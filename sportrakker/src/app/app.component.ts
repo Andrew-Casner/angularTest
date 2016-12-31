@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { HeaderComponent } from './header/header.component';
+import { NewMeetComponent} from './new-meet/new-meet.component';
 
 
 @Component({
@@ -8,5 +9,5 @@ import { HeaderComponent } from './header/header.component';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'app works!';
+  title = 'welcome to Sportrakker!';
 }
