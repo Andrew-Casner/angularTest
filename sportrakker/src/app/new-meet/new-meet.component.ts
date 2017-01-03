@@ -11,6 +11,7 @@ export class NewMeetComponent implements OnInit {
 	constructor(fb: FormBuilder) {
 		this.newMeetForm = fb.group({
 			'meetName' : [null, Validators.required],
+			'meetDescription' : [null, Validators.required],
 			'meetLocation' : [null, Validators.required],
 			'meetDuration' : [null, Validators.compose([Validators.required, Validators.pattern(/^\d+$/)])]
 			
