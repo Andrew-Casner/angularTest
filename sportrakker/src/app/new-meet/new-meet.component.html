@@ -3,29 +3,37 @@
 </div>
 <div class="container">
 	<div class="row text-center">
-	<h2>Basic Info</h2>
-		<form class="form-group row">
-			<label for="meetName" class="col-sm-2 col-form-label">Meet Name</label>
-			<div class="col-sm-10">
-				<input type="text" class="form-control" id="meetName" placeholder="Meet Name">
+		<h2>Basic Info</h2>
+
+		<form [formGroup]="newMeetForm" (ngSubmit)="submitForm(newMeetForm.value)">
+			<div class="form-group row" [ngClass]="{'has-error':!newMeetForm.controls['meetName'].valid && newMeetForm.controls['meetName'].touched}">
+				<label for="meetName" class="col-sm-2 col-form-label">Meet Name</label>
+				<div class="col-sm-10">
+					<input type="text" class="form-control" id="meetName" placeholder="Meet Name" [formControl]="newMeetForm.controls['meetName']">
+					<div *ngIf="newMeetForm.controls['meetName'].hasError('required') && newMeetForm.controls['meetName'].touched" class="alert alert-danger">You must include a title for your meet.</div>
+				</div>
 			</div>
-		</form>
-		<!--Need to put in the javascript to use google maps to get the location-->
-		<form class="form-group row">
-			<label for="meetLocation" class="col-sm-2 col-form-label">Meet Location</label>
-			<div class="col-sm-10">
-				<input class="form-control"  id="meetLocation" placeholder="Meet Location">
+
+			<!--Need to put in the javascript to use google maps to get the location-->
+			<div class="form-group row" [ngClass]="{'has-error':!newMeetForm.controls['meetLocation'].valid && newMeetForm.controls['meetLocation'].touched}">
+				<label for="meetLocation" class="col-sm-2 col-form-label">Meet Location</label>
+				<div class="col-sm-10">
+					<input class="form-control"  id="meetLocation" placeholder="Meet Location" [formControl]="newMeetForm.controls['meetLocation']">
+					<div *ngIf="newMeetForm.controls['meetLocation'].hasError('required') && newMeetForm.controls['meetLocation'].touched" class="alert alert-danger">You must include a location for your meet.</div>
+				</div>
 			</div>
-		</form>
-		<form class="form-group row">
-			<label for="startDate" class="col-sm-2 col-form-label">Date</label>
-			<div class="col-sm-4">
-				<input type="date" class="form-control" id="startDate"> 
+
+			<div class="form-group row">
+				<label for="startDate" class="col-sm-2 col-form-label">Date</label>
+				<div class="col-sm-4">
+					<input type="date" class="form-control" id="startDate"> 
+				</div>
+				<label for="startTime" class="col-sm-2 col-form-label">Start Time of First Event</label>
+				<div class="col-sm-4">
+					<input type="time" class="form-control" id="startTime"> 
+				</div>
 			</div>
-			<label for="startTime" class="col-sm-2 col-form-label">Start Time</label>
-			<div class="col-sm-4">
-				<input type="time" class="form-control" id="startTime"> 
-			</div>
+			<button type="submit" class="btn btn-primary" [disabled]="!newMeetForm.valid">Create New Meet</button>
 		</form>
 	</div>
 </div>
